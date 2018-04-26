@@ -1,4 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/finally';
+
+import { Config } from '../data-model';
+import { ConnectorService } from '../services/connector.service';
 
 @Component({
   selector: 'app-connector-list',
@@ -6,11 +11,20 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./connector-list.component.scss']
 })
 export class ConnectorListComponent implements OnInit {
-  @Input() connectors: Array<any>;
+ connectors: Observable<Connector[]>;
+ isLoading = false;
+ selectedConnector: Connector;
 
-  constructor() { }
+  constructor(private connectorService: ConnectorService) { }
 
-  ngOnInit() {
+  ngOnInit() { this.getConnectors(); }
+
+  getConnectors() {
+    this.isLoading = true;
+    this.connectors = this.connectorService.getConnectors()
+    .finally(() => this.isLoading = false);
+    this.selectedConnector = undefined;
   }
 
+  select(connector: Connector) { this.selectedConnector = connector; }
 }
