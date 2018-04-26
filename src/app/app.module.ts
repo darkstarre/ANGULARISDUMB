@@ -19,9 +19,7 @@ import { ConnectorService } from './services/connector.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    ReactiveFormsModule
   ],
   providers: [ConnectorService],
   bootstrap: [AppComponent]

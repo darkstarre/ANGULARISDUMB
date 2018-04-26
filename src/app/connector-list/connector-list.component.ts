@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/finally';
 
-import { Config } from '../data-model';
+import { Connector } from '../data-model';
 import { ConnectorService } from '../services/connector.service';
 
 @Component({
